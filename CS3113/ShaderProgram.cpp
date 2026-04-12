@@ -1,0 +1,64 @@
+#include "ShaderProgram.h"
+
+ShaderProgram::ShaderProgram() : mIsLoaded(false)
+{
+	mShader = (Shader){ 0 };
+}
+
+ShaderProgram::~ShaderProgram()
+{
+	unload();
+}
+
+bool ShaderProgram::load(const std::string &vertexPath, const std::string &fragmentPath)
+{
+	unload();
+	const char *vs = vertexPath.empty() ? nullptr : vertexPath.c_str();
+	mShader = LoadShader(vs, fragmentPath.c_str());
+	if (mShader.id == 0) {
+		mIsLoaded = false;
+		return false;
+	}
+	mIsLoaded = true;
+	return true;
+}
+
+void ShaderProgram::unload()
+{
+	if (mIsLoaded && mShader.id != 0) {
+		UnloadShader(mShader);
+		mShader = (Shader){ 0 };
+	}
+	mIsLoaded = false;
+}
+
+void ShaderProgram::begin()
+{
+	if (mIsLoaded) BeginShaderMode(mShader);
+}
+
+void ShaderProgram::end()
+{
+	if (mIsLoaded) EndShaderMode();
+}
+
+void ShaderProgram::setVector2(const std::string &name, const Vector2 &value)
+{
+	if (!mIsLoaded) return;
+	int loc = GetShaderLocation(mShader, name.c_str());
+	SetShaderValue(mShader, loc, &value, SHADER_UNIFORM_VEC2);
+}
+
+void ShaderProgram::setFloat(const std::string &name, float value)
+{
+	if (!mIsLoaded) return;
+	int loc = GetShaderLocation(mShader, name.c_str());
+	SetShaderValue(mShader, loc, &value, SHADER_UNIFORM_FLOAT);
+}
+
+void ShaderProgram::setInt(const std::string &name, int value)
+{
+	if (!mIsLoaded) return;
+	int loc = GetShaderLocation(mShader, name.c_str());
+	SetShaderValue(mShader, loc, &value, SHADER_UNIFORM_INT);
+}

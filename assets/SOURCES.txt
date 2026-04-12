@@ -1,0 +1,47 @@
+Dungeon Cleanup Crew — optional graphics (itch.io, OpenGameArt, etc.)
+
+YES, you can use free graphics from itch.io. Pick packs that allow use in your course project
+(read each page’s license: CC0, CC-BY, “free for commercial use”, etc.) and keep attribution
+if required.
+
+HOW TO USE
+----------
+1. Export or crop PNGs to match the layouts below (any pixel size is OK — the game scales tiles
+   to 48 world units and scales sprites to the existing hitbox sizes).
+
+2. Put files here (exact names):
+
+   assets/textures/tileset.png
+   assets/textures/player.png
+   assets/textures/slime.png
+   assets/textures/ghost.png
+   assets/textures/charger.png
+
+3. Run `make run`. If a file is missing, that slot uses the built-in placeholder art.
+
+LAYOUTS (important)
+-------------------
+tileset.png
+  • One horizontal strip: exactly 6 tiles, same width each, one row.
+  • Order (left → right): floor, wall, slime/mess, exit locked, exit open, health pickup.
+  • Must match how Map counts columns: 6 columns × 1 row in the image.
+
+player.png
+  • Sprite sheet: 2 columns × 4 rows (8 frames total).
+  • Row 0 = facing down (walk frames 0–1), row 1 = up, row 2 = left, row 3 = right.
+
+slime.png, ghost.png, charger.png
+  • One row × 4 columns = 4 animation frames (left to right).
+
+TIPS FOR ITCH.IO
+----------------
+• Search: “top down character”, “dungeon tileset”, “slime sprite”, “ghost sprite”, “CC0”.
+• Many packs use 16×16 or 32×32 frames — resize or slice in Aseprite / Photoshop to match the
+  grid above, or stitch frames into one PNG.
+• If a pack uses a different walk cycle, you can still place frames into the 2×4 or 1×4 grid.
+
+CREDITS
+-------
+Paste pack names, authors, and links below for your README / submission:
+
+(your credits here)
