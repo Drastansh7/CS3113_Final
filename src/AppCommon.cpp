@@ -134,7 +134,7 @@ static void drawOpenDoor(Image *img, int x, int y, int w, int h)
 	ImageDrawRectangle(img, x + 4, y + 4, 5, h - 8, frame);
 }
 
-// Filled heart via the usual implicit curve (+y = up in math space).
+// implicit heart curve y axis flipped vs math class
 static bool heartImplicitInside(float x, float y)
 {
 	float x2 = x * x;

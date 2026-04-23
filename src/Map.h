@@ -3,7 +3,7 @@
 
 #include "AppCommon.h"
 
-// 0 = TILE_VOID (nothing drawn). Otherwise atlas column is id minus 1.
+// zero skips drawing nonzero uses atlas slot id minus one
 static const unsigned int TILE_VOID = 0;
 static const unsigned int TILE_FLOOR = 1;
 static const unsigned int TILE_WALL = 2;

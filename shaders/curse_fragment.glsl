@@ -11,6 +11,7 @@ out vec4 finalColor;
 void main()
 {
 	vec4 texel = texture(texture0, fragTexCoord) * fragColor;
+	// stronger curse uniform means greener screen tint
 	vec3 curseTint = vec3(0.35, 0.85, 0.55);
 	float s = clamp(curseStrength, 0.0, 1.0);
 	vec3 mixed = mix(texel.rgb, texel.rgb * curseTint + vec3(0.08, 0.12, 0.1), s * 0.55);

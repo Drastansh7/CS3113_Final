@@ -295,7 +295,7 @@ void Entity::render()
 
 	float drawW = mHalfSize.x * 2.0f;
 	float drawH = mHalfSize.y * 2.0f;
-	// Sprite pivot matches the collision box centre — don't offset one without the other
+	// draw position matches collider centre keep them in sync
 	Rectangle dest = { mPosition.x - drawW * 0.5f, mPosition.y - drawH * 0.5f, drawW, drawH };
 	Vector2 origin = { 0.0f, 0.0f };
 	DrawTexturePro(mTexture, textureArea, dest, origin, 0.0f, WHITE);

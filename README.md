@@ -1,5 +1,6 @@
 # cs3113_finalProj
 
-Dungeon Cleanup Crew — CS3113 final project (raylib). Build with `make`, run with `make run`.
+Dungeon Cleanup Crew for CS3113 built with raylib run `make` then `make run`
 
-Layout: `main.cpp` at repo root; `src/` holds core code (scene, map, entities, shader wrapper, asset loading, shared raylib helpers in `AppCommon`); `src/levels/` is the three floors; `assets/` and `shaders/` stay top-level next to the `Makefile`.
+`main.cpp` is at the repo root game code lives under `src` with three levels in `src/levels`
+Put `assets` and `shaders` next to the Makefile so paths work when you run from the project root
