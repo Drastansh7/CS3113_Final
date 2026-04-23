@@ -1,4 +1,4 @@
-# cs3113_finalProj
+# CS3113 Final
 
 Dungeon Cleanup Crew for CS3113 built with raylib run `make` then `make run`
 
