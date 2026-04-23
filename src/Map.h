@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "cs3113.h"
+#include "AppCommon.h"
 
 // 0 = TILE_VOID (nothing drawn). Otherwise atlas column is id minus 1.
 static const unsigned int TILE_VOID = 0;

@@ -1,7 +1,7 @@
 #ifndef GAME_ASSETS_H
 #define GAME_ASSETS_H
 
-#include "cs3113.h"
+#include "AppCommon.h"
 
 // Swap in your own PNGs under assets/textures/ — SOURCES.txt spells out the layout.
 // Anything missing gets drawn at runtime instead (no crash).

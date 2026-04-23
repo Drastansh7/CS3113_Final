@@ -1,5 +1,5 @@
-#ifndef CS3113_H
-#define CS3113_H
+#ifndef APP_COMMON_H
+#define APP_COMMON_H
 
 #define LOG(argument) std::cout << argument << '\n'
 
@@ -27,4 +27,4 @@ Texture2D GenerateSlimeAtlas(void);
 Texture2D GenerateGhostAtlas(void);
 Texture2D GenerateChargerAtlas(void);
 
-#endif
+#endif /* APP_COMMON_H */
