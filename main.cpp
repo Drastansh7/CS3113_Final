@@ -4,13 +4,13 @@
  * Scrub every mess tile so the exit opens, then walk out.
  */
 
-#include "CS3113/Level1.h"
-#include "CS3113/Level2.h"
-#include "CS3113/Level3.h"
-#include "CS3113/Scene.h"
-#include "CS3113/GameAssets.h"
-#include "CS3113/ShaderProgram.h"
-#include "CS3113/cs3113.h"
+#include "Level1.h"
+#include "Level2.h"
+#include "Level3.h"
+#include "Scene.h"
+#include "GameAssets.h"
+#include "ShaderProgram.h"
+#include "cs3113.h"
 #include <vector>
 
 constexpr int SCREEN_WIDTH = 1000;

@@ -19,7 +19,7 @@ private:
 
 	Texture2D mTexture;
 	TextureType mTextureType;
-	// sheet size in columns and rows see render for UVs
+	// sheet size in columns and rows, render for UVs
 	Vector2 mSpriteSheetDims;
 	std::map<Direction, std::vector<int> > mAnimAtlas;
 	std::vector<int> mAnimIndices;

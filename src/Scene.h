@@ -59,7 +59,7 @@ protected:
 
 	// reset level state
 	void beginLevelInitialise();
-	// free map / player / enemies; audio is caller’s job
+	// free map / player / enemies. audio is caller’s job
 	void freeLevelObjects();
 	void renderDungeon();
 

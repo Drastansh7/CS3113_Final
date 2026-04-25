@@ -3,7 +3,7 @@
 
 #include "cs3113.h"
 
-// Swap in your own PNGs under assets/textures/ (atlas layout in this file and Entity.cpp).
+
 // Anything missing gets drawn at runtime instead (no crash).
 
 struct GameTextures
@@ -25,7 +25,7 @@ static const int kPlayerAtlasRows = 4;
 static const int kEnemyStripCols = 4;
 static const int kEnemyStripRows = 1;
 
-// Tile strip, left to right: floor, wall, mess, locked door, open door, health
+// Tile strip, left to right floor, wall, mess, locked door, open door, health
 static const int kDungeonTilesetCols = 6;
 static const int kDungeonTilesetRows = 1;
 
