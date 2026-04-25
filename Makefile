@@ -1,4 +1,4 @@
-# Dungeon Cleanup Crew — CS3113-style build
+# Dungeon Cleanup Crew
 SRCS = main.cpp \
 	src/AppCommon.cpp \
 	src/GameAssets.cpp \
