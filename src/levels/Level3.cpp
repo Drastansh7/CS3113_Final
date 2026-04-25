@@ -1,14 +1,6 @@
 #include "GameAssets.h"
 #include "Level3.h"
-
-static void fillRect3(std::vector<unsigned int> &g, int W, int c0, int r0, int c1, int r1, unsigned int t)
-{
-	for (int r = r0; r <= r1; r++) {
-		for (int c = c0; c <= c1; c++) {
-			g[r * W + c] = t;
-		}
-	}
-}
+#include "LevelHelpers.h"
 
 Level3::Level3(Vector2 origin, Texture2D tileset, Texture2D playerAtlas, Texture2D slimeAtlas,
 	       Texture2D ghostAtlas, Texture2D chargerAtlas)
@@ -18,19 +10,16 @@ Level3::Level3(Vector2 origin, Texture2D tileset, Texture2D playerAtlas, Texture
 
 void Level3::initialise()
 {
-	unloadAudio();
-	mState.nextSceneId = 0;
-	mState.playerDead = false;
-	mState.victory = false;
-	mState.exitLatched = false;
-	mState.cleanCooldown = 0.0f;
+	// last / hardest
+	beginLevelInitialise();
 
 	mLevelData.assign(kWidth * kHeight, TILE_WALL);
-	fillRect3(mLevelData, kWidth, 1, 1, kWidth - 2, kHeight - 2, TILE_FLOOR);
+	levelGridFillRect(mLevelData, kWidth, 1, 1, kWidth - 2, kHeight - 2, TILE_FLOOR);
 
-	fillRect3(mLevelData, kWidth, 4, 4, 10, 7, TILE_MESS);
-	fillRect3(mLevelData, kWidth, 14, 5, 19, 10, TILE_MESS);
-	fillRect3(mLevelData, kWidth, 6, 11, 14, 13, TILE_MESS);
+	// 3 mess blobs
+	levelGridFillRect(mLevelData, kWidth, 4, 4, 10, 7, TILE_MESS);
+	levelGridFillRect(mLevelData, kWidth, 14, 5, 19, 10, TILE_MESS);
+	levelGridFillRect(mLevelData, kWidth, 6, 11, 14, 13, TILE_MESS);
 	mLevelData[8 + 9 * kWidth] = TILE_MESS;
 	mLevelData[16 + 12 * kWidth] = TILE_MESS;
 
@@ -44,20 +33,7 @@ void Level3::initialise()
 	mState.messTotalAtStart = (float)mState.map->countMessTiles();
 	if (mState.messTotalAtStart < 1.0f) mState.messTotalAtStart = 1.0f;
 
-	std::map<Direction, std::vector<int> > playerAnim;
-	playerAnim[DIR_DOWN] = std::vector<int>(2);
-	playerAnim[DIR_DOWN][0] = 0;
-	playerAnim[DIR_DOWN][1] = 1;
-	playerAnim[DIR_UP] = std::vector<int>(2);
-	playerAnim[DIR_UP][0] = 2;
-	playerAnim[DIR_UP][1] = 3;
-	playerAnim[DIR_LEFT] = std::vector<int>(2);
-	playerAnim[DIR_LEFT][0] = 4;
-	playerAnim[DIR_LEFT][1] = 5;
-	playerAnim[DIR_RIGHT] = std::vector<int>(2);
-	playerAnim[DIR_RIGHT][0] = 6;
-	playerAnim[DIR_RIGHT][1] = 7;
-
+	std::map<Direction, std::vector<int> > playerAnim = makeDefaultPlayerAnimMap();
 	mState.player = new Entity(
 		(Vector2){ mOrigin.x - 300.0f, mOrigin.y },
 		(Vector2){ 20.0f, 20.0f },
@@ -153,45 +129,16 @@ void Level3::initialise()
 		(Vector2){ mOrigin.x + 200.0f, mOrigin.y + 120.0f });
 	mState.enemies.push_back(ghostC);
 
-	if (FileExists("assets/audio/level3.ogg")) {
-		mState.bgm = LoadMusicStream("assets/audio/level3.ogg");
-		mState.hasBgm = true;
-		PlayMusicStream(mState.bgm);
-	}
-	if (FileExists("assets/audio/clean.wav")) {
-		mState.sfxClean = LoadSound("assets/audio/clean.wav");
-		mState.hasSfxClean = true;
-	}
-	if (FileExists("assets/audio/hurt.wav")) {
-		mState.sfxHurt = LoadSound("assets/audio/hurt.wav");
-		mState.hasSfxHurt = true;
-	}
-	if (FileExists("assets/audio/exit.wav")) {
-		mState.sfxExit = LoadSound("assets/audio/exit.wav");
-		mState.hasSfxExit = true;
-	}
+	loadDungeonLevelAudio(&mState, 3);
 }
 
 void Level3::render()
 {
-	ClearBackground(ColorFromHex(mBgHex));
-	if (mState.map) mState.map->render();
-	if (mState.player) mState.player->render();
-	for (size_t i = 0; i < mState.enemies.size(); i++) {
-		if (mState.enemies[i] && mState.enemies[i]->isAlive()) mState.enemies[i]->render();
-	}
+	renderDungeon();
 }
 
 void Level3::shutdown()
 {
-	delete mState.player;
-	mState.player = nullptr;
-	for (size_t i = 0; i < mState.enemies.size(); i++) {
-		delete mState.enemies[i];
-		mState.enemies[i] = nullptr;
-	}
-	mState.enemies.clear();
-	delete mState.map;
-	mState.map = nullptr;
+	freeLevelObjects();
 	unloadAudio();
 }

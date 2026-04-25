@@ -13,8 +13,7 @@ ShaderProgram::~ShaderProgram()
 bool ShaderProgram::load(const std::string &vertexPath, const std::string &fragmentPath)
 {
 	unload();
-	const char *vs = vertexPath.empty() ? nullptr : vertexPath.c_str();
-	mShader = LoadShader(vs, fragmentPath.c_str());
+	mShader = LoadShader(vertexPath.c_str(), fragmentPath.c_str());
 	if (mShader.id == 0) {
 		mIsLoaded = false;
 		return false;

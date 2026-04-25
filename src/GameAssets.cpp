@@ -6,11 +6,6 @@ static const char *kPathSlime = "assets/textures/slime.png";
 static const char *kPathGhost = "assets/textures/ghost.png";
 static const char *kPathCharger = "assets/textures/charger.png";
 
-static void pointSample(Texture2D *t)
-{
-	if (t && t->id != 0) SetTextureFilter(*t, TEXTURE_FILTER_POINT);
-}
-
 void LoadGameTextures(GameTextures *out)
 {
 	out->tileset = (Texture2D){ 0 };
@@ -19,45 +14,11 @@ void LoadGameTextures(GameTextures *out)
 	out->ghost = (Texture2D){ 0 };
 	out->charger = (Texture2D){ 0 };
 
-	if (FileExists(kPathTileset)) {
-		out->tileset = LoadTexture(kPathTileset);
-		pointSample(&out->tileset);
-	} else {
-		out->tileset = GenerateTilesetTexture();
-		pointSample(&out->tileset);
-	}
-
-	if (FileExists(kPathPlayer)) {
-		out->player = LoadTexture(kPathPlayer);
-		pointSample(&out->player);
-	} else {
-		out->player = GenerateJanitorAtlas();
-		pointSample(&out->player);
-	}
-
-	if (FileExists(kPathSlime)) {
-		out->slime = LoadTexture(kPathSlime);
-		pointSample(&out->slime);
-	} else {
-		out->slime = GenerateSlimeAtlas();
-		pointSample(&out->slime);
-	}
-
-	if (FileExists(kPathGhost)) {
-		out->ghost = LoadTexture(kPathGhost);
-		pointSample(&out->ghost);
-	} else {
-		out->ghost = GenerateGhostAtlas();
-		pointSample(&out->ghost);
-	}
-
-	if (FileExists(kPathCharger)) {
-		out->charger = LoadTexture(kPathCharger);
-		pointSample(&out->charger);
-	} else {
-		out->charger = GenerateChargerAtlas();
-		pointSample(&out->charger);
-	}
+	out->tileset = LoadTexture(kPathTileset);
+	out->player = LoadTexture(kPathPlayer);
+	out->slime = LoadTexture(kPathSlime);
+	out->ghost = LoadTexture(kPathGhost);
+	out->charger = LoadTexture(kPathCharger);
 }
 
 void UnloadGameTextures(GameTextures *t)

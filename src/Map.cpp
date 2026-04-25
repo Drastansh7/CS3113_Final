@@ -141,6 +141,7 @@ void Map::unlockExitsIfClear()
 	}
 }
 
+// clean mess tiles in range; can unlock exits
 bool Map::tryCleanMessNear(Vector2 worldPos, float radiusPx)
 {
 	bool cleaned = false;

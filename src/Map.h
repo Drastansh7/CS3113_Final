@@ -1,9 +1,9 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "AppCommon.h"
+#include "cs3113.h"
 
-// zero skips drawing nonzero uses atlas slot id minus one
+// 0 = TILE_VOID (nothing drawn). Otherwise atlas column is id minus 1.
 static const unsigned int TILE_VOID = 0;
 static const unsigned int TILE_FLOOR = 1;
 static const unsigned int TILE_WALL = 2;

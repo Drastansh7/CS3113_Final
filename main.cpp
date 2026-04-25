@@ -1,16 +1,16 @@
 /*
- * Dungeon Cleanup Crew CS3113 Drastansh Nadola
- * WASD move SPACE mop the floor Q quit
- * Clear every mess tile then walk out the exit
+ * Dungeon Cleanup Crew — CS3113, Drastansh Nadola
+ * WASD, SPACE to scrub the floor, Q quits.
+ * Scrub every mess tile so the exit opens, then walk out.
  */
 
-#include "levels/Level1.h"
-#include "levels/Level2.h"
-#include "levels/Level3.h"
-#include "Scene.h"
-#include "GameAssets.h"
-#include "ShaderProgram.h"
-#include "AppCommon.h"
+#include "CS3113/Level1.h"
+#include "CS3113/Level2.h"
+#include "CS3113/Level3.h"
+#include "CS3113/Scene.h"
+#include "CS3113/GameAssets.h"
+#include "CS3113/ShaderProgram.h"
+#include "CS3113/cs3113.h"
 #include <vector>
 
 constexpr int SCREEN_WIDTH = 1000;
@@ -70,7 +70,7 @@ static void restartCurrentLevel(void)
 
 static void initialise(void)
 {
-	InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Cleanup Crew, Drastansh Nadola");
+	InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Cleanup Crew — Drastansh Nadola");
 	InitAudioDevice();
 	SetTargetFPS(FPS);
 
@@ -182,8 +182,8 @@ static void render(void)
 
 	if (gWin) {
 		ClearBackground((Color){ 24, 26, 38, 255 });
-		DrawText("Dungeon clear you win", 120, 220, 28, RAYWHITE);
-		DrawText("R restarts from level one  Q quits", 120, 280, 22, LIGHTGRAY);
+		DrawText("That's a wrap — dungeon's clear.", 120, 220, 28, RAYWHITE);
+		DrawText("R from the top. Q quits.", 120, 280, 22, LIGHTGRAY);
 		EndDrawing();
 		return;
 	}
@@ -215,12 +215,12 @@ static void render(void)
 		int mess = st.map->countMessTiles();
 		DrawText(TextFormat("HP: %i", st.player->getHp()), 16, 12, 22, RAYWHITE);
 		DrawText(TextFormat("Mess left: %i", mess), 16, 38, 22, LIGHTGRAY);
-		DrawText("WASD move SPACE scrub open exit when no mess left", 16, 64, 18, (Color){ 200, 200, 200, 220 });
+		DrawText("WASD · SPACE scrubs · exit when mess hits zero", 16, 64, 18, (Color){ 200, 200, 200, 220 });
 	}
 
 	if (gLose) {
 		DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, (Color){ 0, 0, 0, 160 });
-		DrawText("You died press R to retry this floor", 180, SCREEN_HEIGHT / 2 - 20, 28, RAYWHITE);
+		DrawText("Took a hit — R retries this floor.", 180, SCREEN_HEIGHT / 2 - 20, 28, RAYWHITE);
 	}
 
 	EndDrawing();

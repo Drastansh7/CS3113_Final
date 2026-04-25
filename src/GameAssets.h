@@ -1,9 +1,10 @@
 #ifndef GAME_ASSETS_H
 #define GAME_ASSETS_H
 
-#include "AppCommon.h"
+#include "cs3113.h"
 
-// Put PNGs in assets textures optional see SOURCES else procedural placeholders
+// Swap in your own PNGs under assets/textures/ — SOURCES.txt spells out the layout.
+// Anything missing gets drawn at runtime instead (no crash).
 
 struct GameTextures
 {
@@ -14,17 +15,17 @@ struct GameTextures
 	Texture2D charger;
 };
 
-// point filtering so scaled art stays crisp
+// Point sampling so resized sprites don't go mushy.
 void LoadGameTextures(GameTextures *out);
 void UnloadGameTextures(GameTextures *t);
 
-// player sheet 2x4 enemies one strip of four frames UVs in Entity
+// sheet dims: .x = columns across, .y = rows down (UVs in Entity.cpp).
 static const int kPlayerAtlasCols = 2;
 static const int kPlayerAtlasRows = 4;
 static const int kEnemyStripCols = 4;
 static const int kEnemyStripRows = 1;
 
-// tile order is floor wall mess locked exit open exit health
+// Tile strip, left to right: floor, wall, mess, locked door, open door, health
 static const int kDungeonTilesetCols = 6;
 static const int kDungeonTilesetRows = 1;
 

@@ -57,6 +57,12 @@ class DungeonLevel : public Scene
 protected:
 	int mNextSceneOnExit;
 
+	// reset level state
+	void beginLevelInitialise();
+	// free map / player / enemies; audio is caller’s job
+	void freeLevelObjects();
+	void renderDungeon();
+
 public:
 	DungeonLevel(Vector2 origin, const char *bgHex, Texture2D tileset, Texture2D playerAtlas,
 		     Texture2D slimeAtlas, Texture2D ghostAtlas, Texture2D chargerAtlas, int nextSceneOnExit);

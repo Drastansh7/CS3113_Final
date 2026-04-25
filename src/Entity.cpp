@@ -185,6 +185,7 @@ void Entity::aiGhost(float dt, Map *map)
 	moveWithCollisions(dt, map);
 }
 
+// basic charger AI
 void Entity::aiCharger(float dt, Map *map, Entity *player)
 {
 	mChargeCooldown -= dt;
@@ -295,7 +296,7 @@ void Entity::render()
 
 	float drawW = mHalfSize.x * 2.0f;
 	float drawH = mHalfSize.y * 2.0f;
-	// draw position matches collider centre keep them in sync
+	// same center as collider
 	Rectangle dest = { mPosition.x - drawW * 0.5f, mPosition.y - drawH * 0.5f, drawW, drawH };
 	Vector2 origin = { 0.0f, 0.0f };
 	DrawTexturePro(mTexture, textureArea, dest, origin, 0.0f, WHITE);

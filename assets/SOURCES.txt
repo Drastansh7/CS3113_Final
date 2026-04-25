@@ -14,7 +14,7 @@ Exact filenames
   assets/textures/ghost.png
   assets/textures/charger.png
 
-If a file is missing that slot uses ugly procedural art and the game still runs with make run
+Placeholders can be regenerated:  .venv/bin/python tools/gen_placeholder_textures.py
 
 tileset.png one row six tiles same width floor wall mess locked door open door health
 

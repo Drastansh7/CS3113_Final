@@ -2,3 +2,4 @@ dungeon_cleanup_crew
 dungeon_cleanup_crew.exe
 *.o
 .DS_Store
+.venv/

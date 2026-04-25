@@ -7,6 +7,39 @@ DungeonLevel::DungeonLevel(Vector2 origin, const char *bgHex, Texture2D tileset,
 {
 }
 
+void DungeonLevel::beginLevelInitialise()
+{
+	unloadAudio();
+	mState.nextSceneId = 0;
+	mState.playerDead = false;
+	mState.victory = false;
+	mState.exitLatched = false;
+	mState.cleanCooldown = 0.0f;
+}
+
+void DungeonLevel::freeLevelObjects()
+{
+	delete mState.player;
+	mState.player = nullptr;
+	for (size_t i = 0; i < mState.enemies.size(); i++) {
+		delete mState.enemies[i];
+		mState.enemies[i] = nullptr;
+	}
+	mState.enemies.clear();
+	delete mState.map;
+	mState.map = nullptr;
+}
+
+void DungeonLevel::renderDungeon()
+{
+	ClearBackground(ColorFromHex(mBgHex));
+	if (mState.map) mState.map->render();
+	if (mState.player) mState.player->render();
+	for (size_t i = 0; i < mState.enemies.size(); i++) {
+		if (mState.enemies[i] && mState.enemies[i]->isAlive()) mState.enemies[i]->render();
+	}
+}
+
 void DungeonLevel::update(float deltaTime)
 {
 	if (mState.victory || mState.playerDead) return;
