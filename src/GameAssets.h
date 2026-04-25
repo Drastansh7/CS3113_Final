@@ -3,7 +3,7 @@
 
 #include "cs3113.h"
 
-// Swap in your own PNGs under assets/textures/ — SOURCES.txt spells out the layout.
+// Swap in your own PNGs under assets/textures/ (atlas layout in this file and Entity.cpp).
 // Anything missing gets drawn at runtime instead (no crash).
 
 struct GameTextures

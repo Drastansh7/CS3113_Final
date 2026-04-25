@@ -3,3 +3,4 @@ dungeon_cleanup_crew.exe
 *.o
 .DS_Store
 .venv/
+assets/SOURCES.txt
